@@ -1,17 +1,18 @@
 <?php
-// Configuración de la base de datos
-$host = 'localhost'; // Servidor de la base de datos
-$usuario = 'root';   // Usuario por defecto de MySQL en XAMPP
-$clave = '';         // Sin contraseña por defecto en XAMPP
-$base_de_datos = 'plataforma_notas'; // Nombre de la base de datos
+// Conexion a la base de datos
+$host = '127.0.0.1'; // o localhost
+$db = 'plataforma_notas'; // Nombre de tu base de datos
+$user = 'root'; // Tu usuario de la base de datos
+$pass = ''; // Tu contraseña de la base de datos, si la tienes
 
-// Crear la conexión
-$conn = new mysqli($host, $usuario, $clave, $base_de_datos);
-
-// Verificar la conexión
-if ($conn->connect_error) {
-    die("La conexión ha fallado: " . $conn->connect_error);
-} else {
-    // echo "Conexión exitosa";
+try {
+    // Creación de una instancia PDO para la conexión
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
+    // Configurar el modo de error de PDO para excepciones
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    // Si hay un error de conexión, lo mostramos
+    die("Error de conexión: " . $e->getMessage());
 }
 ?>
+

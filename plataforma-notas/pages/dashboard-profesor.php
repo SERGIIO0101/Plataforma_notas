@@ -1,3 +1,14 @@
+<?php
+session_start();
+include '../includes/conexion.php';
+
+// Verificar si hay sesión activa y que el usuario sea profesor
+if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
+  header('Location: ../login.php');
+  exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,10 +21,12 @@
 
   <!-- Encabezado -->
   <div class="dashboard-header">
-    <h2>Bienvenido, Profesor<br><small>Panel de gestión académica</small></h2>
+    <h2>Bienvenido, Profesor <?php echo $_SESSION['nombre']; ?><br><small>Panel de gestión académica</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <button class="cerrar-sesion">Cerrar sesión</button>
+      <form action="../logout.php" method="post">
+        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+      </form>
     </div>
   </div>
 
@@ -24,32 +37,8 @@
     <div class="menu-item">
       <button class="menu-toggle">Actividades</button>
       <div class="submenu">
-        <a href="#">Subir notas</a>
-        <a href="#">Ver actividades</a>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <button class="menu-toggle">Desempeño</button>
-      <div class="submenu">
-        <a href="#">Informe general</a>
-        <a href="#">Comparativas</a>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <button class="menu-toggle">Calendario</button>
-      <div class="submenu">
-        <a href="#">Eventos</a>
-        <a href="#">Fechas de entrega</a>
-      </div>
-    </div>
-
-    <div class="menu-item">
-      <button class="menu-toggle">Perfil</button>
-      <div class="submenu">
-        <a href="#">Datos personales</a>
-        <a href="#">Cambiar contraseña</a>
+        <a href="subir_notas.php">Subir notas</a>
+        <a href="ver_actividades.php">Ver actividades</a>
       </div>
     </div>
   </aside>

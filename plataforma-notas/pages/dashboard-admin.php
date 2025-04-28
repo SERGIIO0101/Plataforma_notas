@@ -4,7 +4,7 @@ include '../includes/conexion.php';
 
 // Verificar si hay sesión activa y que el usuario sea administrador
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-  header('Location: ../login-admin.php');
+  header('Location: ../login.php');
   exit;
 }
 ?>
@@ -23,10 +23,15 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
   <div class="dashboard-header">
     <h2>Panel de Administración<br><small>Bienvenido, <?php echo $_SESSION['nombre']; ?></small></h2>
     <div class="user-menu">
+      <!-- Imagen de perfil del usuario -->
       <img src="https://cdn-icons-png.flaticon.com/512/456/456212.png" alt="admin" />
-      <form action="../logout.php" method="post">
-        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
-      </form>
+      <!-- Menú desplegable -->
+      <div class="menu-plegable">
+        <a href="perfil.php">Ver perfil</a>
+        <form action="../logout.php" method="post">
+          <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+        </form>
+      </div>
     </div>
   </div>
 
