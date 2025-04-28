@@ -15,7 +15,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard Administrador</title>
-  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../assets/styles/styles.css" />
 </head>
 <body>
 
@@ -70,6 +70,6 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
     <p style="margin-top: 30px; font-weight: bold;">Sistema Integral de Evaluaciones - Administración</p>
   </div>
 
-  <script src="../scripts/script.js"></script>
+  <script src="../assets/scripts/script.js"></script>
 </body>
 </html>

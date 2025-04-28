@@ -8,7 +8,7 @@ session_start();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Registro de Usuarios</title>
-  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../assets/styles/styles.css" />
 </head>
 <body>
   <div class="contenedor">
@@ -38,6 +38,6 @@ session_start();
   <footer>
     <p>© 2025 Plataforma SIE. Todos los derechos reservados.</p>
   </footer>
-  <script src="../scripts/script.js"></script>
+  <script src="../assets/scripts/script.js"></script>
 </body>
 </html>
