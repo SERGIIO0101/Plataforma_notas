@@ -1,14 +1,15 @@
-<?php
+<<?php
 session_start();
-include '../includes/conexion.php';
 
-// Verificar si hay sesión activa y que el usuario sea administrador
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-  header('Location: ../login.php');
-  exit;
+// 1. Protección: debe estar logueado y ser admin
+if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_rol'] !== 'admin') {
+    header('Location: login.php');
+    exit;
 }
-?>
 
+// 2. (Opcional) Incluir conexión si luego necesitas tirar datos
+// require_once '../includes/conexion.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -21,17 +22,12 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
 
   <!-- Encabezado -->
   <div class="dashboard-header">
-    <h2>Panel de Administración<br><small>Bienvenido, <?php echo $_SESSION['nombre']; ?></small></h2>
+    <h2>Panel de Administración<br>
+       <small>Bienvenido, <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></small>
+    </h2>
     <div class="user-menu">
-      <!-- Imagen de perfil del usuario -->
-      <img src="https://cdn-icons-png.flaticon.com/512/456/456212.png" alt="admin" />
-      <!-- Menú desplegable -->
-      <div class="menu-plegable">
-        <a href="perfil.php">Ver perfil</a>
-        <form action="../logout.php" method="post">
-          <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
-        </form>
-      </div>
+      <img src="../assets/image5.png" alt="admin" />
+      <a href="logout.php" class="cerrar-sesion">Cerrar sesión</a>
     </div>
   </div>
 
@@ -43,7 +39,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
       <button class="menu-toggle">Usuarios</button>
       <div class="submenu">
         <a href="registro.php">Registrar usuario</a>
-        <a href="listar_usuarios.php">Listar usuarios</a>
+        <a href="ver_usuarios.php">Listar usuarios</a>
       </div>
     </div>
 
@@ -67,7 +63,9 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
   <!-- Contenido principal -->
   <div class="dashboard-content">
     <img src="../assets/image5.png" alt="Escudo institucional" />
-    <p style="margin-top: 30px; font-weight: bold;">Sistema Integral de Evaluaciones - Administración</p>
+    <p style="margin-top: 30px; font-weight: bold;">
+      Sistema Integral de Evaluaciones - Administración
+    </p>
   </div>
 
   <script src="../assets/scripts/script.js"></script>
