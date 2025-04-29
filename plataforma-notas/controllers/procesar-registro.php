@@ -2,43 +2,38 @@
 session_start();
 include '../includes/conexion.php';
 
-// Verificar que los datos necesarios estén presentes
-if (isset($_POST['nombre'], $_POST['email'], $_POST['password'], $_POST['rol'])) {
-  $nombre = $_POST['nombre'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
-  $rol = $_POST['rol'];
-
-  // Validar que el correo no esté registrado previamente
-  $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
-  $stmt->bind_param("s", $email);
-  $stmt->execute();
-  $resultado = $stmt->get_result();
-
-  if ($resultado->num_rows > 0) {
-    $_SESSION['error'] = 'El correo electrónico ya está registrado.';
-    header('Location: ../pages/registro.php');
+// Verificar CSRF token
+if (!hash_equals($_SESSION['csrf_token'], $_POST['csrf_token'])) {
+    $_SESSION['error'] = 'Token CSRF inválido.';
+    header('Location: ../pages/admin/gestion_usuarios/registro.php');
     exit;
-  }
+}
 
-  // Encriptar la contraseña antes de almacenarla
-  $password_hash = password_hash($password, PASSWORD_BCRYPT);
+// Validar datos
+$nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
+$email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+$rol = $_POST['rol'];
 
-  // Insertar el nuevo usuario en la base de datos
-  $stmt = $conn->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (?, ?, ?, ?)");
-  $stmt->bind_param("ssss", $nombre, $email, $password_hash, $rol);
+if (!empty($nombre) && !empty($email) && !empty($password) && !empty($rol)) {
+    try {
+        $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email, password, rol) VALUES (:nombre, :email, :password, :rol)");
+        $stmt->bindParam(':nombre', $nombre);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':rol', $rol);
+        $stmt->execute();
 
-  if ($stmt->execute()) {
-    $_SESSION['success'] = 'Usuario registrado exitosamente.';
-    header('Location: ../pages/login.php');
-    exit;
-  } else {
-    $_SESSION['error'] = 'Hubo un problema al registrar el usuario. Intenta nuevamente.';
-    header('Location: ../pages/registro.php');
-    exit;
-  }
+        $_SESSION['success'] = 'Usuario registrado exitosamente.';
+        header('Location: ../pages/admin/gestion_usuarios/registro.php');
+        exit;
+    } catch (PDOException $e) {
+        $_SESSION['error'] = 'Error al registrar el usuario.';
+        header('Location: ../pages/admin/gestion_usuarios/registro.php');
+        exit;
+    }
 } else {
-  $_SESSION['error'] = 'Por favor, completa todos los campos.';
-  header('Location: ../pages/registro.php');
-  exit;
+    $_SESSION['error'] = 'Por favor completa todos los campos.';
+    header('Location: ../pages/admin/gestion_usuarios/registro.php');
+    exit;
 }

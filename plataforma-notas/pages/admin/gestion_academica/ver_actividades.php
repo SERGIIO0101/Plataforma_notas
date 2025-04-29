@@ -27,7 +27,7 @@ $totalEval     = $conn->query("SELECT COUNT(*) AS c FROM evaluaciones")->fetch_a
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Estadísticas - Admin</title>
-  <link rel="stylesheet" href="../assets/styles/styles.css">
+  <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
   <?php include 'dashboard-admin-header.php'; ?>
@@ -44,6 +44,6 @@ $totalEval     = $conn->query("SELECT COUNT(*) AS c FROM evaluaciones")->fetch_a
     </ul>
   </div>
 
-  <script src="../assets/scripts/script.js"></script>
+  <script src="../../../assets/scripts/script.js"></script>
 </body>
 </html>

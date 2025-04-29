@@ -1,43 +1,23 @@
-<?php
-session_start();
-?>
+<form action="../../../controllers/procesar-registro.php" method="POST" class="form-registro">
+  <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+  <h2>Registrar Nuevo Usuario</h2>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registro de Usuarios</title>
-  <link rel="stylesheet" href="../assets/styles/styles.css" />
-</head>
-<body>
-  <div class="contenedor">
-    <div class="form-contenedor iniciar-sesion">
-      <form action="../controllers/procesar-registro.php" method="POST">
-        <h2>Registrar Nuevo Usuario</h2>
+  <label for="nombre">Nombre</label>
+  <input type="text" id="nombre" name="nombre" placeholder="Nombre completo" required>
 
-        <!-- Mostrar mensaje de error si existe -->
-        <?php if (isset($_SESSION['error'])): ?>
-          <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-        <?php endif; ?>
+  <label for="email">Correo electrónico</label>
+  <input type="email" id="email" name="email" placeholder="usuario@ejemplo.com" required>
 
-        <input type="text" name="nombre" placeholder="Nombre completo" required />
-        <input type="email" name="email" placeholder="Correo institucional" required />
-        <input type="password" name="password" placeholder="Contraseña" required />
-        
-        <select name="rol" required>
-          <option value="" disabled selected>Selecciona un rol</option>
-          <option value="estudiante">Estudiante</option>
-          <option value="profesor">Profesor</option>
-        </select>
+  <label for="password">Contraseña</label>
+  <input type="password" id="password" name="password" placeholder="Contraseña" required>
 
-        <button type="submit">Registrar Usuario</button>
-      </form>
-    </div>
-  </div>
-  <footer>
-    <p>© 2025 Plataforma SIE. Todos los derechos reservados.</p>
-  </footer>
-  <script src="../assets/scripts/script.js"></script>
-</body>
-</html>
+  <label for="rol">Rol</label>
+  <select id="rol" name="rol" required>
+    <option value="" disabled selected>Selecciona un rol</option>
+    <option value="admin">Administrador</option>
+    <option value="profesor">Profesor</option>
+    <option value="estudiante">Estudiante</option>
+  </select>
+
+  <button type="submit">Registrar Usuario</button>
+</form>

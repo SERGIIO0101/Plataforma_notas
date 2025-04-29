@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+// Generar un token CSRF si no existe
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,12 +22,18 @@ session_start();
 
     <!-- Mostrar mensaje de error si existe -->
     <?php if (isset($_SESSION['error'])): ?>
-      <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+      <div class="error"><?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?></div>
     <?php endif; ?>
 
     <form action="controllers/procesar-login.php" method="POST" class="form-login">
-      <input type="email" name="email" placeholder="Correo electrónico" required>
-      <input type="password" name="password" placeholder="Contraseña" required>
+      <!-- Token CSRF -->
+      <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
+      <label for="email">Correo electrónico</label>
+      <input type="email" id="email" name="email" placeholder="Correo electrónico" required>
+
+      <label for="password">Contraseña</label>
+      <input type="password" id="password" name="password" placeholder="Contraseña" required>
 
       <button type="submit">Iniciar Sesión</button>
     </form>
