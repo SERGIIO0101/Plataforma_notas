@@ -5,7 +5,7 @@ include '../../../includes/conexion.php';
 // Protección: debe estar logueado y ser admin
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
     $_SESSION['error'] = 'No tienes permisos para acceder a esta página.';
-    header('Location: ../../login.php');
+    header('Location: ../../../login.php');
     exit;
 }
 

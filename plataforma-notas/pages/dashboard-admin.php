@@ -47,24 +47,24 @@ try {
     <div class="menu-item">
       <button class="menu-toggle">Usuarios</button>
       <div class="submenu">
-        <a href="gestion_usuarios/registro.php">Registrar usuario</a>
-        <a href="gestion_usuarios/ver_usuarios.php">Listar usuarios</a>
-        <a href="gestion_usuarios/cambiar_roles.php">Cambiar roles</a>
-        <a href="gestion_usuarios/eliminar_usuarios.php">Eliminar cuenta</a>
+        <a href="admin/gestion_usuarios/registro.php">Registrar usuario</a>
+        <a href="admin/gestion_usuarios/ver_usuarios.php">Listar usuarios</a>
+        <a href="admin/gestion_usuarios/cambiar_roles.php">Cambiar roles</a>
+        <a href="admin/gestion_usuarios/eliminar_usuarios.php">Eliminar cuenta</a>
       </div>
     </div>
     <div class="menu-item">
       <button class="menu-toggle">Gestión Académica</button>
       <div class="submenu">
-        <a href="gestion_academica/historial_academico.php">Historial académico</a>
-        <a href="gestion_academica/ver_actividades.php">Ver actividades</a>
+        <a href="admin/gestion_academica/historial_academico.php">Historial académico</a>
+        <a href="admin/gestion_academica/ver_actividades.php">Ver actividades</a>
       </div>
     </div>
     <div class="menu-item">
       <button class="menu-toggle">Estadísticas</button>
       <div class="submenu">
-        <a href="estadisticas/panel_general.php">Panel general</a>
-        <a href="estadisticas/actividad_reciente.php">Actividad reciente</a>
+        <a href="admin/estadisticas/panel_general.php">Panel general</a>
+        <a href="admin/estadisticas/actividad_reciente.php">Actividad reciente</a>
       </div>
     </div>
   </aside>
