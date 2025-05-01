@@ -36,7 +36,7 @@ try {
        <small>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?></small>
     </h2>
     <div class="user-menu">
-      <img src="../assets/image5.png" alt="admin" />
+      <img src="../assets/image4.jpg" alt="admin" />
       <a href="../logout.php" class="cerrar-sesion">Cerrar sesión</a>
     </div>
   </div>

@@ -40,6 +40,6 @@ if (!isset($_SESSION['csrf_token'])) {
 
     <p>¿Olvidaste tu contraseña? Contacta al administrador.</p>
   </div>
-
+  
 </body>
 </html>

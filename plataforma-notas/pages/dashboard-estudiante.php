@@ -37,8 +37,8 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'estudiante') {
     <div class="menu-item">
       <button class="menu-toggle">Consultar</button>
       <div class="submenu">
-        <a href="ver_resultados.php">Ver nota</a>
-        <a href="historial_academico.php">Historial académico</a>
+        <a href="estudiante/visualizar_notas.php">Ver nota</a>
+        <a href="estudiante/historial_academico.php">Historial académico</a>
       </div>
     </div>
   </aside>

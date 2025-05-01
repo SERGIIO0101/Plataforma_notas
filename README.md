@@ -74,7 +74,7 @@ PROYECTO_DE_AULA/
 |── login.php
 |── logout.php
 
-## Funcionalidades por Rol
+## Funcionalidades para cada rol
 
 ### Administrador
 - Registrar nuevos usuarios y asignar roles.
