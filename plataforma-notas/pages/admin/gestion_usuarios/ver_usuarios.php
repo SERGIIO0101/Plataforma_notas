@@ -28,6 +28,16 @@ try {
   <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
+    <!-- Encabezado -->
+    <div class="dashboard-header">
+    <h2>Bienvenido, <?php echo $_SESSION['nombre']; ?><br><small>¿Qué quieres hacer?</small></h2>
+    <div class="user-menu">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
+      <form action="../../../logout.php" method="post">
+        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+      </form>
+    </div>
+  </div>
   <h2>Lista de Usuarios</h2>
   <table>
     <thead>

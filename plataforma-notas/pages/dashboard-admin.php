@@ -2,92 +2,93 @@
 session_start();
 include '../includes/conexion.php';
 
-// Protección: debe estar logueado y ser admin
+// Verificar si hay sesión activa y que el usuario sea administrador
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
     $_SESSION['error'] = 'No tienes permisos para acceder a esta página.';
     header('Location: ../login.php');
     exit;
 }
 
-// Obtener estadísticas rápidas
+// Consultar estadísticas generales
 try {
-    $total_usuarios = $pdo->query("SELECT COUNT(*) AS total FROM usuarios")->fetch()['total'];
-    $total_profesores = $pdo->query("SELECT COUNT(*) AS total FROM usuarios WHERE rol = 'profesor'")->fetch()['total'];
-    $total_estudiantes = $pdo->query("SELECT COUNT(*) AS total FROM usuarios WHERE rol = 'estudiante'")->fetch()['total'];
+    $counts = [];
+    $roles = ['estudiante', 'profesor', 'admin'];
+    foreach ($roles as $r) {
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE rol = ?");
+        $stmt->execute([$r]);
+        $counts[$r] = $stmt->fetchColumn();
+    }
+
+    $totalMaterias = $pdo->query("SELECT COUNT(*) AS c FROM materias")->fetch()['c'];
+    $totalCursos = $pdo->query("SELECT COUNT(*) AS c FROM cursos")->fetch()['c'];
+    $totalNotas = $pdo->query("SELECT COUNT(*) AS c FROM notas")->fetch()['c'];
 } catch (PDOException $e) {
     $_SESSION['error'] = 'Error al cargar las estadísticas.';
     header('Location: ../login.php');
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Administrador</title>
   <link rel="stylesheet" href="../assets/styles/styles.css" />
 </head>
 <body>
-
   <!-- Encabezado -->
   <div class="dashboard-header">
-    <h2>Panel de Administración<br>
-       <small>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?></small>
-    </h2>
+    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Panel de Administración</small></h2>
     <div class="user-menu">
-      <img src="../assets/image4.jpg" alt="admin" />
-      <a href="../logout.php" class="cerrar-sesion">Cerrar sesión</a>
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
+      <form action="../logout.php" method="post">
+        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+      </form>
     </div>
   </div>
 
   <!-- Menú lateral -->
   <aside class="sidebar">
-    <h3>Opciones administrativas</h3>
+    <h3>Opciones Administrativas</h3>
     <div class="menu-item">
       <button class="menu-toggle">Usuarios</button>
       <div class="submenu">
-        <a href="admin/gestion_usuarios/registro.php">Registrar usuario</a>
-        <a href="admin/gestion_usuarios/ver_usuarios.php">Listar usuarios</a>
-        <a href="admin/gestion_usuarios/cambiar_roles.php">Cambiar roles</a>
-        <a href="admin/gestion_usuarios/eliminar_usuarios.php">Eliminar cuenta</a>
+        <a href="admin/gestion_usuarios/registro.php">Registrar Usuario</a>
+        <a href="admin/gestion_usuarios/ver_usuarios.php">Listar Usuarios</a>
+        <a href="admin/gestion_usuarios/cambiar_roles.php">Cambiar Roles</a>
+        <a href="admin/gestion_usuarios/eliminar_usuarios.php">Eliminar Cuenta</a>
       </div>
     </div>
     <div class="menu-item">
-      <button class="menu-toggle">Gestión Académica</button>
+      <button class="menu-toggle">Gestión de Cursos</button>
       <div class="submenu">
-        <a href="admin/gestion_academica/historial_academico.php">Historial académico</a>
-        <a href="admin/gestion_academica/ver_actividades.php">Ver actividades</a>
+      <a href="admin/gestion_academica/crear_curso.php">Crear Curso</a>
+        <a href="admin/gestion_academica/asignar_curso.php">Asignar Cursos</a>
+        <a href="admin/gestion_academica/ver_cursos.php">Listar Cursos</a>
       </div>
     </div>
     <div class="menu-item">
       <button class="menu-toggle">Estadísticas</button>
       <div class="submenu">
-        <a href="admin/estadisticas/panel_general.php">Panel general</a>
-        <a href="admin/estadisticas/actividad_reciente.php">Actividad reciente</a>
+        <a href="admin/gestion_academica/ver_actividades.php">Ver Actividades</a>
+        <a href="admin/gestion_academica/historial_academico.php">Historial Académico</a>
       </div>
     </div>
   </aside>
 
   <!-- Contenido principal -->
   <div class="dashboard-content">
-    <div class="dashboard-stats">
-      <div class="stat-item">
-        <h3>Usuarios Totales</h3>
-        <p><?php echo $total_usuarios; ?></p>
-      </div>
-      <div class="stat-item">
-        <h3>Profesores</h3>
-        <p><?php echo $total_profesores; ?></p>
-      </div>
-      <div class="stat-item">
-        <h3>Estudiantes</h3>
-        <p><?php echo $total_estudiantes; ?></p>
-      </div>
-    </div>
-    <div class="welcome-message">
-      <p>Utiliza el menú lateral para gestionar usuarios, roles y estadísticas del sistema.</p>
-    </div>
+    <h2>Estadísticas Generales</h2>
+    <ul class="stats-list">
+      <li>Estudiantes: <?= htmlspecialchars($counts['estudiante']) ?></li>
+      <li>Profesores: <?= htmlspecialchars($counts['profesor']) ?></li>
+      <li>Administradores: <?= htmlspecialchars($counts['admin']) ?></li>
+      <li>Total Materias: <?= htmlspecialchars($totalMaterias) ?></li>
+      <li>Total Cursos: <?= htmlspecialchars($totalCursos) ?></li>
+      <li>Total Notas: <?= htmlspecialchars($totalNotas) ?></li>
+    </ul>
   </div>
 
   <script src="../assets/scripts/script.js"></script>

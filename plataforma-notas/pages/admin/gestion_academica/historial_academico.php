@@ -32,26 +32,44 @@ try {
   <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
-  <h2>Historial Académico</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Estudiante</th>
-        <th>Materia</th>
-        <th>Nota</th>
-        <th>Fecha</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach ($historial as $registro): ?>
-        <tr>
-          <td><?php echo htmlspecialchars($registro['estudiante']); ?></td>
-          <td><?php echo htmlspecialchars($registro['materia']); ?></td>
-          <td><?php echo htmlspecialchars($registro['nota']); ?></td>
-          <td><?php echo htmlspecialchars($registro['fecha']); ?></td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
+  <!-- Encabezado -->
+  <div class="dashboard-header">
+    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>¿Qué quieres hacer?</small></h2>
+    <div class="user-menu">
+      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
+      <form action="../../../logout.php" method="post">
+        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="dashboard-content">
+    <h2>Historial Académico</h2>
+    <?php if (!empty($historial)): ?>
+      <table>
+        <thead>
+          <tr>
+            <th>Estudiante</th>
+            <th>Materia</th>
+            <th>Nota</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php foreach ($historial as $registro): ?>
+            <tr>
+              <td><?php echo htmlspecialchars($registro['estudiante']); ?></td>
+              <td><?php echo htmlspecialchars($registro['materia']); ?></td>
+              <td><?php echo htmlspecialchars($registro['nota']); ?></td>
+              <td><?php echo htmlspecialchars($registro['fecha']); ?></td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+    <?php else: ?>
+      <p>No hay registros en el historial académico.</p>
+    <?php endif; ?>
+  </div>
 </body>
 </html>
