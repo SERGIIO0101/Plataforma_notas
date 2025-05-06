@@ -24,7 +24,7 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'estudiante') {
     <h2>Bienvenido, <?php echo $_SESSION['nombre']; ?><br><small>¿Qué quieres hacer?</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <form action="../logout.php" method="post">
+      <form action="../controllers/logout.php" method="post">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
     </div>
@@ -47,7 +47,9 @@ if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'estudiante') {
   <div class="dashboard-content">
     <img src="../assets/image5.png" alt="Escudo institucional" />
   </div>
-
+  <footer class="footer">
+    <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+  </footer>
   <script src="../assets/scripts/script.js"></script>
 </body>
 </html>

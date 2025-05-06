@@ -38,18 +38,18 @@ try {
   <link rel="stylesheet" href="../assets/styles/styles.css" />
 </head>
 <body>
-  <!-- Encabezado -->
+<!-- Encabezado -->
   <div class="dashboard-header">
-    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Panel de Administración</small></h2>
+    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>¿Qué quieres hacer?</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <form action="../logout.php" method="post">
+      <form action="../controllers/logout.php" method="post">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
     </div>
   </div>
 
-  <!-- Menú lateral -->
+<!-- Menú lateral -->
   <aside class="sidebar">
     <h3>Opciones Administrativas</h3>
     <div class="menu-item">
@@ -57,8 +57,7 @@ try {
       <div class="submenu">
         <a href="admin/gestion_usuarios/registro.php">Registrar Usuario</a>
         <a href="admin/gestion_usuarios/ver_usuarios.php">Listar Usuarios</a>
-        <a href="admin/gestion_usuarios/cambiar_roles.php">Cambiar Roles</a>
-        <a href="admin/gestion_usuarios/eliminar_usuarios.php">Eliminar Cuenta</a>
+        <a href="admin/gestion_usuarios/ver_notas.php">Notas</a>
       </div>
     </div>
     <div class="menu-item">
@@ -72,14 +71,14 @@ try {
     <div class="menu-item">
       <button class="menu-toggle">Estadísticas</button>
       <div class="submenu">
-        <a href="admin/gestion_academica/ver_actividades.php">Ver Actividades</a>
-        <a href="admin/gestion_academica/historial_academico.php">Historial Académico</a>
+        <a href="admin/estadisticas/ver_actividades.php">Ver Actividades</a>
+        <a href="admin/estadisticas/historial_academico.php">Historial Académico</a>
       </div>
     </div>
   </aside>
 
   <!-- Contenido principal -->
-  <div class="dashboard-content">
+    <div class="dashboard-content">
     <h2>Estadísticas Generales</h2>
     <ul class="stats-list">
       <li>Estudiantes: <?= htmlspecialchars($counts['estudiante']) ?></li>
@@ -89,8 +88,12 @@ try {
       <li>Total Cursos: <?= htmlspecialchars($totalCursos) ?></li>
       <li>Total Notas: <?= htmlspecialchars($totalNotas) ?></li>
     </ul>
-  </div>
-
-  <script src="../assets/scripts/script.js"></script>
+    </div>
 </body>
+<!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+  </footer>
+<!-- Script -->
+  <script src="../../../assets/scripts/script.js"></script> 
 </html>

@@ -5,7 +5,7 @@ include '../../../includes/conexion.php';
 // Protección: debe estar logueado y ser admin
 if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
     $_SESSION['error'] = 'No tienes permisos para acceder a esta página.';
-    header('Location: ../../login.php');
+    header('Location: ../../../login.php');
     exit;
 }
 
@@ -28,15 +28,16 @@ try {
   <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
-    <!-- Encabezado -->
-    <div class="dashboard-header">
-    <h2>Bienvenido, <?php echo $_SESSION['nombre']; ?><br><small>¿Qué quieres hacer?</small></h2>
+ <!-- Encabezado -->
+ <div class="dashboard-header">
+    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Usuarios</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <form action="../../../logout.php" method="post">
+      <form action="../../../controllers/logout.php" method="post">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
     </div>
+  </div>
   </div>
   <h2>Lista de Usuarios</h2>
   <table>
@@ -65,4 +66,8 @@ try {
     </tbody>
   </table>
 </body>
+<footer class="footer">
+  <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+</footer>
+<script src="../../../assets/scripts/script.js"></script>
 </html>

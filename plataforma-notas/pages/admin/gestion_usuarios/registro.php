@@ -16,12 +16,12 @@ if (!isset($_SESSION['csrf_token'])) {
   <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
-    <!-- Encabezado -->
-    <div class="dashboard-header">
-    <h2>Bienvenido, <?php echo $_SESSION['nombre']; ?><br><small>¿Qué quieres hacer?</small></h2>
+<!-- Encabezado -->
+  <div class="dashboard-header">
+    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Usuarios </small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <form action="../../../logout.php" method="post">
+      <form action="../../../controllers/logout.php" method="post">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
     </div>
@@ -38,7 +38,7 @@ if (!isset($_SESSION['csrf_token'])) {
       <div class="error"><?php echo htmlspecialchars($_SESSION['error']); unset($_SESSION['error']); ?></div>
     <?php endif; ?>
 
-    <!-- Formulario de registro -->
+<!-- Formulario de registro -->
     <form action="../../../controllers/procesar-registro.php" method="POST" class="form-registro">
       <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
@@ -63,4 +63,10 @@ if (!isset($_SESSION['csrf_token'])) {
     </form>
   </div>
 </body>
+<!-- Pie de página -->
+  <footer class="footer">
+    <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+  </footer>
+<!-- Scripts -->
+  <script src="../../../assets/scripts/script.js"></script>
 </html>

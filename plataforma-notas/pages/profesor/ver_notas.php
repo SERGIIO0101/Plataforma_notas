@@ -35,17 +35,27 @@ try {
   <link rel="stylesheet" href="../../assets/styles/styles.css">
 </head>
 <body>
-  <!-- Encabezado -->
-  <div class="dashboard-header">
-    <h2>Ver Notas<br><small>Gestión Académica</small></h2>
+ <!-- Encabezado -->
+ <div class="dashboard-header">
+    <h2>Bienvenido, Profesor <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Panel de gestión académica</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <form action="../../../logout.php" method="post">
+      <form action="../controllers/logout.php" method="post">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
     </div>
   </div>
-
+<!-- Menú lateral -->
+  <aside class="sidebar">
+    <h3>Menú</h3>
+    <div class="menu-item">
+      <button class="menu-toggle">Actividades</button>
+      <div class="submenu">
+        <a href="subir_notas.php">Subir Notas</a>
+        <a href="ver_notas.php">Ver Actividades</a>
+      </div>
+    </div>
+  </aside>
   <!-- Contenido principal -->
   <div class="dashboard-content">
     <h2>Notas de los Estudiantes</h2>
@@ -81,4 +91,10 @@ try {
     <?php endif; ?>
   </div>
 </body>
+<!-- Pie de página -->
+  <footer class="footer">
+    <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+  </footer>
+<!-- Script -->
+  <script src="../../assets/scripts/script.js"></script>
 </html>
