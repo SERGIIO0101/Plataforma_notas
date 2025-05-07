@@ -35,7 +35,10 @@ try {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard Administrador</title>
-  <link rel="stylesheet" href="../assets/styles/styles.css" />
+  <link rel="stylesheet" href="../assets/styles/base.css" />
+  <link rel="stylesheet" href="../assets/styles/pages/dashboard.css" />
+  <link rel="stylesheet" href="../assets/styles/components.css" />
+  <link rel="stylesheet" href="../assets/styles/layout.css" />
 </head>
 <body>
 <!-- Encabezado -->
@@ -57,7 +60,7 @@ try {
       <div class="submenu">
         <a href="admin/gestion_usuarios/registro.php">Registrar Usuario</a>
         <a href="admin/gestion_usuarios/ver_usuarios.php">Listar Usuarios</a>
-        <a href="admin/gestion_usuarios/ver_notas.php">Notas</a>
+        <a href="admin/gestion_usuarios/ver_notas.php">Ver Notas</a>
       </div>
     </div>
     <div class="menu-item">

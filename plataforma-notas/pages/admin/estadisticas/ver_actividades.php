@@ -39,7 +39,7 @@ try {
 <body>
 <!-- Encabezado -->
   <div class="dashboard-header">
-    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Gestión de Cursos</small></h2>
+    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Estadísticas</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
       <form action="../../../controllers/logout.php" method="post">
@@ -53,9 +53,9 @@ try {
     <div class="menu-item">
       <button class="menu-toggle">Usuarios</button>
       <div class="submenu">
-        <a href="gestion_usuarios/registro.php">Registrar Usuario</a>
-        <a href="gestion_usuarios/ver_usuarios.php">Listar Usuarios</a>
-        <a href="gestion_usuarios/ver_notas.php">Notas</a>
+        <a href="../gestion_usuarios/registro.php">Registrar Usuario</a>
+        <a href="../gestion_usuarios/ver_usuarios.php">Listar Usuarios</a>
+        <a href="../gestion_usuarios/ver_notas.php">Notas</a>
       </div>
     </div>
     <div class="menu-item">

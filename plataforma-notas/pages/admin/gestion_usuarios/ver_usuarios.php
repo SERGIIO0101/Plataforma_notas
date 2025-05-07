@@ -29,7 +29,7 @@ try {
 </head>
 <body>
  <!-- Encabezado -->
- <div class="dashboard-header">
+    <div class="dashboard-header">
     <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Usuarios</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
@@ -66,8 +66,10 @@ try {
     </tbody>
   </table>
 </body>
-<footer class="footer">
-  <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
-</footer>
-<script src="../../../assets/scripts/script.js"></script>
+<!-- Pie de página -->
+  <footer class="footer">
+    <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+  </footer>
+<!-- Script -->  
+  <script src="../../../assets/scripts/script.js"></script>
 </html>

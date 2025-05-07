@@ -1,30 +1,147 @@
-
-/* Define colores globales, tipografía y estilos básicos. */
-/* Incluye reset de CSS para asegurar consistencia entre navegadores. */
 :root {
-    --verde-principal: #009640;
-    --verde-secundario: #3ca53d;
-    --azul-oscuro: #224170;
-    --azul-claro: #1e447b;
-    --blanco: #fafafa;
-    --gris-claro: #f4f4f9;
-    --gris-oscuro: #333;
-    --rojo-error: #e74c3c;
+  --verde-principal: #009640;
+  --verde-secundario: #3ca53d;
+  --azul-oscuro: #224170;
+  --azul-claro: #1e447b;
+  --blanco: #ffffff;
+  --gris-claro: #f5f6fa;
+  --gris-medio: #dcdde1;
+  --gris-oscuro: #2f3640;
+  --rojo-error: #e74c3c;
+  --borde-radio: 8px;
+  --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: var(--blanco);
-    color: var(--gris-oscuro);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--gris-claro);
+  color: var(--gris-oscuro);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+/* TIPOGRAFÍA */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--azul-oscuro);
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: var(--gris-oscuro);
+}
+
+a {
+  color: var(--azul-claro);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--verde-principal);
+}
+
+/* CONTENEDORES */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* BOTONES GENERALES */
+button {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 10px 16px;
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+  border: none;
+  border-radius: var(--borde-radio);
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--verde-principal);
+}
+
+/* IMÁGENES */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--borde-radio);
+}
+
+/* LISTAS */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+/* TABLAS */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: var(--blanco);
+  box-shadow: var(--sombra-suave);
+  border-radius: var(--borde-radio);
+  overflow: hidden;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid var(--gris-medio);
+}
+
+th {
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+}
+
+/* FORMULARIOS */
+input, select, textarea {
+  font-family: inherit;
+  font-size: 15px;
+  padding: 10px;
+  border: 1px solid var(--gris-medio);
+  border-radius: var(--borde-radio);
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--verde-principal);
+  box-shadow: 0 0 0 2px rgba(0, 150, 64, 0.1);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
   }
+
+  .container {
+    padding: 0 10px;
+  }
+}

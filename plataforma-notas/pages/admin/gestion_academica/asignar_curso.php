@@ -49,9 +49,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
-<!-- Encabezado -->
+  <!-- Encabezado -->
   <div class="dashboard-header">
-    <h2>Gestión de Cursos<br><small>Asignar Cursos a Profesores</small></h2>
+    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Gestión de Cursos</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
       <form action="../../../controllers/logout.php" method="post">

@@ -36,7 +36,7 @@ try {
   <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
-    <!-- Encabezado -->
+  <!-- Encabezado -->
     <div class="dashboard-header">
     <h2>Bienvenido, <?php echo $_SESSION['nombre']; ?><br><small>¿Qué quieres hacer?</small></h2>
     <div class="user-menu">
@@ -46,7 +46,8 @@ try {
       </form>
     </div>
   </div>
-  <h2>Historial Académico</h2>
+  
+<h2>Historial Académico</h2>
   <table>
     <thead>
       <tr>
@@ -66,4 +67,10 @@ try {
     </tbody>
   </table>
 </body>
+<!-- Pie de página -->
+  <footer class="footer">
+    <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+  </footer>
+<!-- Script -->  
+  <script src="../../../assets/scripts/script.js"></script>
 </html>

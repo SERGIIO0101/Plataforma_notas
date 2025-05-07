@@ -36,7 +36,7 @@ try {
   <link rel="stylesheet" href="../../../assets/styles/styles.css">
 </head>
 <body>
-   <!-- Encabezado -->
+<!-- Encabezado -->
     <div class="dashboard-header">
     <h2>Bienvenido, <?php echo $_SESSION['nombre']; ?><br><small>¿Qué quieres hacer?</small></h2>
     <div class="user-menu">
@@ -44,6 +44,7 @@ try {
       <form action="../../controllers/logout.php" method="post">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
+<!-- Contenido principal -->  
   <h2>Notas Actuales</h2>
   <table>
     <thead>

@@ -1,4 +1,5 @@
 /* Define la estructura general del diseño, como el encabezado, el menú lateral y el pie de página. */
+/* ====== ENCABEZADO (HEADER) ====== */
 .dashboard-header {
     background: linear-gradient(to right, var(--verde-principal), var(--azul-oscuro));
     padding: 20px 40px;
@@ -6,20 +7,142 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.sidebar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .dashboard-header h2 {
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .dashboard-header h2 small {
+    display: block;
+    font-size: 14px;
+    color: var(--blanco);
+  }
+  
+  .user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .user-menu img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .cerrar-sesion {
+    background: var(--verde-principal);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .cerrar-sesion:hover {
+    background: var(--verde-secundario);
+  }
+  
+  /* ====== MENÚ LATERAL (SIDEBAR) ====== */
+  .sidebar {
     width: 260px;
     background-color: var(--azul-oscuro);
     color: white;
     height: 100vh;
     position: fixed;
-    top: 0;
+    top: 80px;
     left: 0;
     padding: 20px;
-}
-
-.dashboard-content {
-    margin-left: 270px;
-    padding: 20px;
-}
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: white;
+  }
+  
+  .menu-item {
+    margin-bottom: 20px;
+  }
+  
+  .menu-item button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    padding: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-item button:hover {
+    background-color: var(--verde-principal);
+  }
+  
+  .submenu {
+    margin-top: 10px;
+    padding-left: 15px;
+  }
+  
+  .submenu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 8px 0;
+    transition: color 0.3s;
+  }
+  
+  .submenu a:hover {
+    color: var(--verde-principal);
+  }
+  
+  /* ====== PIE DE PÁGINA (FOOTER) ====== */
+  .footer {
+    background-color: var(--azul-oscuro);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 14px;
+  }
+  
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 768px) {
+    .dashboard-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+      top: 0;
+      box-shadow: none;
+    }
+  
+    .submenu {
+      padding-left: 10px;
+    }
+  
+    .footer {
+      font-size: 12px;
+    }
+  }

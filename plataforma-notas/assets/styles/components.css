@@ -1,25 +1,148 @@
 /* Contiene estilos reutilizables para componentes como botones, formularios, tablas, etc. */
+/* ====== BOTONES ====== */
 button {
     background-color: var(--verde-principal);
     color: white;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  button:hover {
+    background-color: var(--verde-secundario);
+    transform: translateY(-2px);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  .cerrar-sesion {
+    background-color: var(--verde-principal);
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
     cursor: pointer;
     transition: background-color 0.3s;
-}
-
-button:hover {
+  }
+  
+  .cerrar-sesion:hover {
     background-color: var(--verde-secundario);
-}
-
-table {
+  }
+  
+  /* ====== FORMULARIOS ====== */
+  input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: var(--gris-claro);
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--verde-principal);
+    box-shadow: 0 0 5px rgba(0, 150, 64, 0.5);
+  }
+  
+  textarea {
+    resize: vertical;
+  }
+  
+  /* ====== TABLAS ====== */
+  table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-}
-
-table th, table td {
-    padding: 12px;
-    border: 1px solid var(--gris-claro);
-}
+    font-size: 14px;
+    text-align: left;
+  }
+  
+  table thead {
+    background-color: var(--azul-oscuro);
+    color: white;
+  }
+  
+  table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  table tbody tr:nth-child(even) {
+    background-color: var(--gris-claro);
+  }
+  
+  table tbody tr:hover {
+    background-color: #eaf2f8;
+  }
+  
+  /* ====== LISTAS ====== */
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  ul li {
+    margin: 10px 0;
+    font-size: 16px;
+    color: var(--gris-oscuro);
+  }
+  
+  /* ====== MENSAJES ====== */
+  .success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .error {
+    color: var(--rojo-error);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  /* ====== TARJETAS ====== */
+  .card {
+    background-color: var(--blanco);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ====== RESPONSIVE ====== */
+  @media (max-width: 768px) {
+    button {
+      font-size: 12px;
+      padding: 8px 16px;
+    }
+  
+    table {
+      font-size: 12px;
+    }
+  
+    .card {
+      padding: 15px;
+    }
+  }
