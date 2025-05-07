@@ -69,10 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
  <!-- Encabezado -->
  <div class="dashboard-header">
-    <h2>Bienvenido, Profesor <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Panel de gestión académica</small></h2>
+    <h2>Bienvenido, Profesor <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Actividades</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <form action="../controllers/logout.php" method="post">
+      <form action="../../controllers/logout.php" method="post">
         <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
       </form>
     </div>

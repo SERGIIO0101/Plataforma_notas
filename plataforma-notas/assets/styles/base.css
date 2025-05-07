@@ -1,0 +1,30 @@
+
+/* Define colores globales, tipografía y estilos básicos. */
+/* Incluye reset de CSS para asegurar consistencia entre navegadores. */
+:root {
+    --verde-principal: #009640;
+    --verde-secundario: #3ca53d;
+    --azul-oscuro: #224170;
+    --azul-claro: #1e447b;
+    --blanco: #fafafa;
+    --gris-claro: #f4f4f9;
+    --gris-oscuro: #333;
+    --rojo-error: #e74c3c;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--blanco);
+    color: var(--gris-oscuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+  }

@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table th, table td {
+    padding: 12px;
+    border: 1px solid var(--gris-claro);
+}
+
+table th {
+    background-color: var(--azul-oscuro);
+    color: white;
+}

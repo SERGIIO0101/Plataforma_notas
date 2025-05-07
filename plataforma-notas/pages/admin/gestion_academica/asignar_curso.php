@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <!-- Encabezado -->
   <div class="dashboard-header">
-    <h2>Bienvenido, <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Gestión de Cursos</small></h2>
+    <h2>Gestión de Cursos<br><small>Asignar Cursos a Profesores</small></h2>
     <div class="user-menu">
       <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
       <form action="../../../controllers/logout.php" method="post">
@@ -59,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </form>
     </div>
   </div>
+
 <!-- Menú lateral -->
   <aside class="sidebar">
     <h3>Opciones Administrativas</h3>
@@ -86,41 +87,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </div>
     </div>
   </aside>
+<!-- Contenido principal -->
   <div class="dashboard-content">
-    <?php if (isset($_SESSION['success'])): ?>
-      <div class="success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
-    <?php endif; ?>
-    <?php if (isset($_SESSION['error'])): ?>
-      <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
-    <?php endif; ?>
+    <div class="form-container">
+      <h2>Asignar Cursos</h2>
+      <?php if (isset($_SESSION['success'])): ?>
+        <div class="success"><?php echo $_SESSION['success']; unset($_SESSION['success']); ?></div>
+      <?php endif; ?>
+      <?php if (isset($_SESSION['error'])): ?>
+        <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+      <?php endif; ?>
 
-    <form action="asignar_curso.php" method="POST">
-      <label for="profesor_id">Seleccionar Profesor:</label>
-      <select name="profesor_id" id="profesor_id" required>
-        <option value="" disabled selected>Seleccione un profesor</option>
-        <?php foreach ($profesores as $profesor): ?>
-          <option value="<?php echo $profesor['id']; ?>"><?php echo htmlspecialchars($profesor['nombre']); ?></option>
-        <?php endforeach; ?>
-      </select>
+      <form action="asignar_curso.php" method="POST">
+        <label for="profesor_id">Seleccionar Profesor:</label>
+        <select name="profesor_id" id="profesor_id" required>
+          <option value="" disabled selected>Seleccione un profesor</option>
+          <?php foreach ($profesores as $profesor): ?>
+            <option value="<?php echo $profesor['id']; ?>"><?php echo htmlspecialchars($profesor['nombre']); ?></option>
+          <?php endforeach; ?>
+        </select>
 
-      <label for="curso_ids">Seleccionar Cursos:</label>
-      <div class="checkbox-group">
-        <?php foreach ($cursos as $curso): ?>
-          <label>
-            <input type="checkbox" name="curso_ids[]" value="<?php echo $curso['id']; ?>">
-            <?php echo htmlspecialchars($curso['nombre']); ?>
-          </label>
-        <?php endforeach; ?>
-      </div>
+        <label for="curso_ids">Seleccionar Cursos:</label>
+        <div class="checkbox-group">
+          <?php foreach ($cursos as $curso): ?>
+            <label>
+              <input type="checkbox" name="curso_ids[]" value="<?php echo $curso['id']; ?>">
+              <?php echo htmlspecialchars($curso['nombre']); ?>
+            </label>
+          <?php endforeach; ?>
+        </div>
 
-      <button type="submit">Asignar Cursos</button>
-    </form>
+        <button type="submit">Asignar Cursos</button>
+      </form>
+    </div>
   </div>
-</body>
+
 <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
   </footer>
+
 <!-- Script -->
   <script src="../../../assets/scripts/script.js"></script>
+</body>
 </html>

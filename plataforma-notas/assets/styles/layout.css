@@ -1,0 +1,25 @@
+/* Define la estructura general del diseño, como el encabezado, el menú lateral y el pie de página. */
+.dashboard-header {
+    background: linear-gradient(to right, var(--verde-principal), var(--azul-oscuro));
+    padding: 20px 40px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar {
+    width: 260px;
+    background-color: var(--azul-oscuro);
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+}
+
+.dashboard-content {
+    margin-left: 270px;
+    padding: 20px;
+}

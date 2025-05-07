@@ -1,0 +1,128 @@
+.contenedor-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--blanco);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+  }
+  
+  .contenedor-login h2 {
+    font-size: 24px;
+    color: var(--azul-oscuro);
+    margin-bottom: 20px;
+  }
+  
+  .contenedor-login p {
+    font-size: 14px;
+    color: var(--gris-oscuro);
+    margin-bottom: 20px;
+  }
+  
+  /* ====== FORMULARIO ====== */
+  .contenedor-login form {
+    width: 100%;
+  }
+  
+  input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: var(--gris-claro);
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: var(--verde-principal);
+    box-shadow: 0 0 5px rgba(0, 150, 64, 0.5);
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: 10px;
+    background-color: var(--verde-principal);
+    color: var(--blanco);
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: var(--verde-secundario);
+  }
+  
+  /* ====== MENSAJES ====== */
+  .success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .error {
+    color: var(--rojo-error);
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  /* ====== ENLACES ====== */
+  .contenedor-login a {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--azul-claro);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .contenedor-login a:hover {
+    color: var(--verde-principal);
+  }
+  
+  /* ====== IMAGEN DE FONDO (OPCIONAL) ====== */
+  .imagen-login {
+    display: none; /* Oculto por defecto */
+  }
+  
+  .imagen-login img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* ====== RESPONSIVE ====== */
+  @media (min-width: 768px) {
+    body {
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .contenedor-login {
+      max-width: 500px;
+      padding: 40px;
+    }
+  
+    .imagen-login {
+      display: block;
+      margin-right: 30px;
+    }
+  }

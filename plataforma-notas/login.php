@@ -13,7 +13,8 @@ if (!isset($_SESSION['csrf_token'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Iniciar Sesión - Plataforma Notas</title>
-  <link rel="stylesheet" href="assets/styles/styles.css">
+  <link rel="stylesheet" href="assets/styles/base.css">
+  <link rel="stylesheet" href="assets/styles/pages/login.css">
 </head>
 <body>
 
@@ -40,6 +41,7 @@ if (!isset($_SESSION['csrf_token'])) {
 
     <p>¿Olvidaste tu contraseña? Contacta al administrador.</p>
   </div>
-  
+<!-- Script -->
+  <script src="../../../assets/scripts/script.js"></script>   
 </body>
 </html>
