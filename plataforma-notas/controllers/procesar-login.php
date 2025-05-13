@@ -2,65 +2,66 @@
 session_start();
 include '../includes/conexion.php'; // Conexión a la base de datos
 
-// Verificar si se recibieron los datos por POST
-if (isset($_POST['email']) && isset($_POST['password'])) {
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = $_POST['password'];
+// Verificar token CSRF
+if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+    $_SESSION['error_login'] = 'Token inválido. Por favor, vuelve a intentarlo.';
+    header('Location: ../login.php');
+    exit;
+}
 
-    // Validar que el correo y la contraseña no estén vacíos
-    if (!empty($email) && !empty($password)) {
+// Validar datos recibidos
+if (isset($_POST['usuario']) && isset($_POST['password'])) {
+    $usuarioInput = trim($_POST['usuario']);
+    $passwordInput = $_POST['password'];
+
+    if (!empty($usuarioInput) && !empty($passwordInput)) {
         try {
-            // Consulta SQL para verificar si el usuario existe
-            $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email LIMIT 1");
-            $stmt->bindParam(':email', $email);
+            // Consulta preparada
+            $stmt = $pdo->prepare("SELECT * FROM usuarios WHERE email = :usuario OR nombre = :usuario LIMIT 1");
+            $stmt->bindParam(':usuario', $usuarioInput);
             $stmt->execute();
             $usuario = $stmt->fetch();
 
-            // Verificar si el usuario fue encontrado
-            if ($usuario) {
-                // Verificar si la contraseña es correcta
-                if (password_verify($password, $usuario['password'])) {
-                    // Iniciar sesión y guardar la información del usuario
-                    $_SESSION['usuario_id'] = $usuario['id'];
-                    $_SESSION['nombre'] = $usuario['nombre'];
-                    $_SESSION['email'] = $usuario['email'];
-                    $_SESSION['rol'] = $usuario['rol']; // Establecer el rol (admin, estudiante, profesor)
+            if ($usuario && password_verify($passwordInput, $usuario['password'])) {
+                // Iniciar sesión
+                $_SESSION['usuario_id'] = $usuario['id'];
+                $_SESSION['nombre'] = $usuario['nombre'];
+                $_SESSION['email'] = $usuario['email'];
+                $_SESSION['rol'] = $usuario['rol'];
 
-                    // Redirigir según el rol del usuario
-                    if ($usuario['rol'] === 'admin') {
+                // Redirigir según el rol
+                switch ($usuario['rol']) {
+                    case 'admin':
                         header('Location: ../pages/dashboard-admin.php');
-                    } elseif ($usuario['rol'] === 'profesor') {
-                        header('Location: ../pages/dashboard-profesor.php');
-                    } elseif ($usuario['rol'] === 'estudiante') {
+                        break;
+                    case 'profesor':
+                        header('Location: ../pages/dashboard-profesor.php.php');
+                        break;
+                    case 'estudiante':
                         header('Location: ../pages/dashboard-estudiante.php');
-                    }
-                    exit;
-                } else {
-                    // Contraseña incorrecta
-                    $_SESSION['error'] = 'Contraseña incorrecta';
-                    header('Location: ../login.php');
-                    exit;
+                        break;
+                    default:
+                        $_SESSION['error_login'] = 'Rol no reconocido.';
+                        header('Location: ../login.php');
                 }
+                exit;
             } else {
-                // Usuario no encontrado
-                $_SESSION['error'] = 'Correo electrónico no registrado';
+                $_SESSION['error_login'] = 'Usuario o contraseña incorrectos.';
                 header('Location: ../login.php');
                 exit;
             }
         } catch (PDOException $e) {
-            $_SESSION['error'] = 'Error al consultar la base de datos.';
+            $_SESSION['error_login'] = 'Error al conectar con la base de datos.';
             header('Location: ../login.php');
             exit;
         }
     } else {
-        // Si los campos están vacíos
-        $_SESSION['error'] = 'Por favor completa todos los campos';
+        $_SESSION['error_login'] = 'Completa todos los campos.';
         header('Location: ../login.php');
         exit;
     }
 } else {
-    // Si no se recibieron los datos de formulario
-    $_SESSION['error'] = 'Acceso no autorizado';
+    $_SESSION['error_login'] = 'Acceso no autorizado.';
     header('Location: ../login.php');
     exit;
 }

@@ -13,7 +13,7 @@ if (!isset($_SESSION['csrf_token'])) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registro de Usuarios</title>
-  <link rel="stylesheet" href="../../../assets/styles/styles.css">
+  <link rel="stylesheet" href="../../../assets/styles/base.css">
 </head>
 <body>
 <!-- Encabezado -->

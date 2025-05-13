@@ -1,4 +1,4 @@
-// === Animación de cambio entre "Iniciar sesión" y "Registrarse" ===
+// === Cambio entre "Iniciar sesión" y "Registrarse" ===
 const contenedor = document.getElementById('contenedor');
 const registrarseBtn = document.getElementById('registrarse');
 const iniciarSesionBtn = document.getElementById('iniciarSesion');
@@ -24,7 +24,7 @@ document.querySelectorAll('a[href^="#"]').forEach(enlace => {
   });
 });
 
-// === Efecto al hacer hover en botones ===
+// === Efecto hover en botones ===
 document.querySelectorAll('.role-button, button').forEach(boton => {
   boton.addEventListener('mouseenter', () => {
     boton.style.transform = 'scale(1.05)';
@@ -34,7 +34,7 @@ document.querySelectorAll('.role-button, button').forEach(boton => {
   });
 });
 
-// === Mostrar alerta si el login está incompleto ===
+// === Validación básica del formulario de login ===
 document.querySelectorAll('form').forEach(form => {
   form.addEventListener('submit', (e) => {
     const campos = form.querySelectorAll('input[required]');
@@ -51,6 +51,33 @@ document.querySelectorAll('form').forEach(form => {
     }
   });
 });
+
+// === Mostrar/Ocultar contraseña ===
+document.querySelectorAll('.toggle-password').forEach(icono => {
+  icono.addEventListener('click', () => {
+    const input = icono.previousElementSibling;
+    const esVisible = input.type === 'text';
+    input.type = esVisible ? 'password' : 'text';
+    
+    const icon = icono.querySelector('i');
+    if (icon) {
+      icon.classList.toggle('fa-eye');
+      icon.classList.toggle('fa-eye-slash');
+    }
+  });
+});
+
+// === Efecto hover en botones ===
+document.querySelectorAll('button').forEach(boton => {
+  boton.addEventListener('mouseenter', () => {
+    boton.style.transform = 'scale(1.05)';
+  });
+  boton.addEventListener('mouseleave', () => {
+    boton.style.transform = 'scale(1)';
+  });
+});
+
+// === Alternar submenús del sidebar (si aplica) ===
 document.querySelectorAll('.menu-toggle').forEach(boton => {
   boton.addEventListener('click', () => {
     const submenu = boton.nextElementSibling;
