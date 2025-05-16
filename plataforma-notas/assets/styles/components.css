@@ -1,86 +1,120 @@
-/* ====== BOTONES ====== */
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 14px;
+/* ====== BOTONES GENERALES ====== */
+button,
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background-color: var(--azul-primario);
+    color: var(--blanco);
+    font-size: 15px;
     font-weight: 600;
-    text-align: center;
     border: none;
     border-radius: var(--borde-radio);
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-decoration: none;
 }
 
-.btn-primary {
-    background-color: var(--azul-primario);
-    color: var(--blanco);
+button:hover,
+.button:hover {
+    background-color: var(--azul-hover);
 }
 
-.btn-primary:hover {
-    background-color: var(--azul-secundario);
-}
-
-.btn-danger {
-    background-color: var(--rojo-error);
-    color: var(--blanco);
-}
-
-.btn-danger:hover {
-    opacity: 0.9;
-}
-
-/* ====== FORMULARIOS ====== */
-input, select, textarea {
+/* ====== INPUTS Y FORMULARIOS ====== */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
     width: 100%;
+    padding: 10px 14px;
+    font-size: 15px;
+    border: 1px solid var(--gris-claro);
+    border-radius: var(--borde-radio);
+    background-color: var(--blanco);
+    color: var(--texto);
+    transition: border-color 0.3s;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--azul-primario);
+}
+
+/* ====== ALERTAS ====== */
+.error {
+    background-color: #ffdddd;
+    border-left: 4px solid #ff5c5c;
     padding: 12px;
-    border: 1px solid var(--gris-oscuro);
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #b00020;
+    border-radius: var(--borde-radio);
+}
+
+.mensaje-exito {
+    background-color: #d4edda;
+    border-left: 4px solid #28a745;
+    padding: 12px;
+    margin-bottom: 16px;
+    color: #155724;
     border-radius: var(--borde-radio);
     font-size: 14px;
-    background-color: var(--gris-claro);
-    transition: all 0.3s ease;
 }
 
-input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--verde-principal);
-}
-
-/* Campo de contraseña con icono */
-.campo-password {
-    position: relative;
-}
-
-.toggle-password {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 18px;
-}
-
-/* ====== MENSAJES ====== */
-.success {
-    color: #155724;
-    background-color: #d4edda;
-    padding: 10px;
-    border-radius: var(--borde-radio);
-    margin-bottom: 10px;
-}
-
-.error {
-    color: #721c24;
-    background-color: #f8d7da;
-    padding: 10px;
-    border-radius: var(--borde-radio);
-    margin-bottom: 10px;
-}
-
-/* ====== TARJETAS (opcional) ====== */
+/* ====== CARDS REUTILIZABLES ====== */
 .card {
     background-color: var(--blanco);
-    box-shadow: var(--sombra-suave);
     border-radius: var(--borde-radio);
+    box-shadow: var(--sombra-suave);
     padding: 20px;
-    margin-bottom: 20px;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--sombra-media);
+}
+
+/* ====== UTILIDADES ====== */
+.texto-centrado {
+    text-align: center;
+}
+
+.texto-derecha {
+    text-align: right;
+}
+
+.texto-negrita {
+    font-weight: bold;
+}
+/* Para resaltar campos vacíos */
+.campo-error {
+  border: 1px solid #e74c3c;
+  background-color: #fff0f0;
+}
+
+/* Mensaje de error en el formulario */
+.form-error-msg {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Mostrar submenús con clase abierta */
+.submenu {
+  display: none;
+}
+.submenu.abierto {
+  display: block;
+}
+
+/* Hover de botones (opcional si lo tenías en JS antes) */
+button:hover, .role-button:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease;
 }

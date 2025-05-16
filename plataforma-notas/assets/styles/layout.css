@@ -116,20 +116,6 @@
     background-color: var(--blanco);
 }
 
-.stats-list {
-    list-style: none;
-    padding: 0;
-    margin-top: 20px;
-}
-
-.stats-list li {
-    background-color: var(--gris-medio);
-    margin-bottom: 12px;
-    padding: 14px 20px;
-    border-radius: var(--borde-radio);
-    font-weight: 600;
-}
-
 /* ====== FOOTER ====== */
 .footer {
     background-color: var(--gris-oscuro);

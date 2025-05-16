@@ -1,4 +1,4 @@
-// === Cambio entre "Iniciar sesión" y "Registrarse" ===
+// === Alternar entre "Iniciar sesión" y "Registrarse" ===
 const contenedor = document.getElementById('contenedor');
 const registrarseBtn = document.getElementById('registrarse');
 const iniciarSesionBtn = document.getElementById('iniciarSesion');
@@ -13,9 +13,9 @@ if (registrarseBtn && iniciarSesionBtn && contenedor) {
   });
 }
 
-// === Animación suave al hacer scroll en enlaces ===
+// === Animación suave al hacer scroll en enlaces internos ===
 document.querySelectorAll('a[href^="#"]').forEach(enlace => {
-  enlace.addEventListener('click', function(e) {
+  enlace.addEventListener('click', function (e) {
     e.preventDefault();
     const destino = document.querySelector(this.getAttribute('href'));
     if (destino) {
@@ -24,30 +24,29 @@ document.querySelectorAll('a[href^="#"]').forEach(enlace => {
   });
 });
 
-// === Efecto hover en botones ===
-document.querySelectorAll('.role-button, button').forEach(boton => {
-  boton.addEventListener('mouseenter', () => {
-    boton.style.transform = 'scale(1.05)';
-  });
-  boton.addEventListener('mouseleave', () => {
-    boton.style.transform = 'scale(1)';
-  });
-});
-
-// === Validación básica del formulario de login ===
+// === Validación básica del formulario de login con mensaje inline ===
 document.querySelectorAll('form').forEach(form => {
   form.addEventListener('submit', (e) => {
     const campos = form.querySelectorAll('input[required]');
     let valido = true;
+
     campos.forEach(campo => {
       if (campo.value.trim() === '') {
         valido = false;
+        campo.classList.add('campo-error');
+      } else {
+        campo.classList.remove('campo-error');
       }
     });
 
+    const mensaje = form.querySelector('.form-error-msg');
     if (!valido) {
       e.preventDefault();
-      alert("Por favor completa todos los campos.");
+      if (mensaje) {
+        mensaje.textContent = "Por favor completa todos los campos obligatorios.";
+      }
+    } else if (mensaje) {
+      mensaje.textContent = ""; // Limpiar mensaje si está todo bien
     }
   });
 });
@@ -55,10 +54,10 @@ document.querySelectorAll('form').forEach(form => {
 // === Mostrar/Ocultar contraseña ===
 document.querySelectorAll('.toggle-password').forEach(icono => {
   icono.addEventListener('click', () => {
-    const input = icono.previousElementSibling;
+    const input = icono.closest('.campo-password').querySelector('input');
     const esVisible = input.type === 'text';
     input.type = esVisible ? 'password' : 'text';
-    
+
     const icon = icono.querySelector('i');
     if (icon) {
       icon.classList.toggle('fa-eye');
@@ -67,20 +66,10 @@ document.querySelectorAll('.toggle-password').forEach(icono => {
   });
 });
 
-// === Efecto hover en botones ===
-document.querySelectorAll('button').forEach(boton => {
-  boton.addEventListener('mouseenter', () => {
-    boton.style.transform = 'scale(1.05)';
-  });
-  boton.addEventListener('mouseleave', () => {
-    boton.style.transform = 'scale(1)';
-  });
-});
-
-// === Alternar submenús del sidebar (si aplica) ===
+// === Alternar submenús del sidebar ===
 document.querySelectorAll('.menu-toggle').forEach(boton => {
   boton.addEventListener('click', () => {
     const submenu = boton.nextElementSibling;
-    submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    submenu.classList.toggle('abierto');
   });
 });

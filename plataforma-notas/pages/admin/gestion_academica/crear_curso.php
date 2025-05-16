@@ -36,7 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Crear Curso</title>
-  <link rel="stylesheet" href="../../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../../assets/styles/base.css">
+    <link rel="stylesheet" href="../../../assets/styles/components.css">
+    <link rel="stylesheet" href="../../../assets/styles/layout.css">
+    <link rel="stylesheet" href="../../../assets/styles/pages/cursos.css">
 </head>
 <body>
   <!-- Encabezado -->

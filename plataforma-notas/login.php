@@ -34,6 +34,8 @@ if (isset($_SESSION['error'])) {
     <!-- Estilos -->
     <link rel="stylesheet" href="assets/styles/base.css">
     <link rel="stylesheet" href="assets/styles/pages/login.css">
+    <link rel="stylesheet" href="assets/styles/components.css">
+    <link rel="stylesheet" href="assets/styles/layout.css">
     <!-- Puedes incluir íconos de Font Awesome si lo deseas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -74,12 +76,14 @@ if (isset($_SESSION['error'])) {
               <button type="submit">
                 <i class="fas fa-arrow-right-to-bracket"></i> Entrar
               </button>
+              <p class="form-error-msg" aria-live="polite"></p>
+
             </form>
 
             <p>¿Olvidaste tu contraseña? <a href="recuperar.php">Recupérala aquí</a></p>
 
             <section class="soporte">
-                <p>¿Necesitas ayuda? WhatsApp: <strong>+57 987 654 321</strong></p>
+                <p>¿Necesitas ayuda? WhatsApp: <strong>+57 315 215 70 34</strong></p>
             </section>
         </div>
 
@@ -89,8 +93,8 @@ if (isset($_SESSION['error'])) {
         </div>
 
     </div>
-
-    <!-- Script -->
-    <script src="assets/scripts/script.js"></script>
+  
+    <!-- Scripts -->
+  <script src="assets/scripts/script.js"></script>
 </body>
 </html>

@@ -2,27 +2,15 @@
 session_start();
 include '../includes/conexion.php';
 
-// Verificar si hay sesión activa y que el usuario sea profesor
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
-    $_SESSION['error'] = 'No tienes permisos para acceder a esta página.';
-    header('Location: ../login.php');
-    exit;
+function verificarAccesoProfesor() {
+    if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'profesor') {
+        $_SESSION['error'] = 'No tienes permisos para acceder a esta página.';
+        header('Location: ../login.php');
+        exit;
+    }
 }
 
-// Obtener los cursos asignados al profesor
-try {
-    $stmt = $pdo->prepare("
-        SELECT c.nombre AS curso, c.descripcion 
-        FROM cursos c
-        JOIN profesores_cursos pc ON c.id = pc.curso_id
-        WHERE pc.profesor_id = :profesor_id
-    ");
-    $stmt->bindParam(':profesor_id', $_SESSION['usuario_id']);
-    $stmt->execute();
-    $cursos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Error al obtener los cursos: " . $e->getMessage());
-}
+verificarAccesoProfesor();
 ?>
 
 <!DOCTYPE html>
@@ -31,53 +19,65 @@ try {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dashboard Profesor</title>
-  <link rel="stylesheet" href="../assets/styles/styles.css" />
+  <link rel="stylesheet" href="../assets/styles/base.css" />
+  <link rel="stylesheet" href="../assets/styles/components.css" />
+  <link rel="stylesheet" href="../assets/styles/layout.css" />
+  <link rel="stylesheet" href="../assets/styles/pages/dashboard.css" />
 </head>
 <body>
-<!-- Encabezado -->
-  <div class="dashboard-header">
-    <h2>Bienvenido, Profesor <?php echo htmlspecialchars($_SESSION['nombre']); ?><br><small>Panel de gestión académica</small></h2>
-    <div class="user-menu">
-      <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
-      <form action="../controllers/logout.php" method="post">
-        <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
-      </form>
-    </div>
-  </div>
+  <div class="dashboard-layout">
 
-<!-- Menú lateral -->
-  <aside class="sidebar">
-    <h3>Menú</h3>
-    <div class="menu-item">
-      <button class="menu-toggle">Actividades</button>
-      <div class="submenu">
-        <a href="profesor/subir_notas.php">Subir Notas</a>
-        <a href="profesor/ver_notas.php">Ver Actividades</a>
+    <!-- Header -->
+    <header class="dashboard-header">
+      <h2>Bienvenido, <?= htmlspecialchars($_SESSION['nombre']) ?><br><small>Panel del Profesor</small></h2>
+      <div class="user-menu">
+        <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" alt="usuario" />
+        <form action="../controllers/logout.php" method="post">
+          <button type="submit" class="cerrar-sesion">Cerrar sesión</button>
+        </form>
       </div>
-    </div>
-  </aside>
+    </header>
 
-<!-- Contenido principal -->
-  <div class="dashboard-content">
-    <h2>Cursos Asignados</h2>
-    <?php if (!empty($cursos)): ?>
-      <ul class="cursos-list">
-        <?php foreach ($cursos as $curso): ?>
-          <li>
-            <h3><?php echo htmlspecialchars($curso['curso']); ?></h3>
-            <p><?php echo htmlspecialchars($curso['descripcion']); ?></p>
-          </li>
-        <?php endforeach; ?>
-      </ul>
-    <?php else: ?>
-      <p>No tienes cursos asignados actualmente.</p>
-    <?php endif; ?>
+    <!-- Contenedor principal -->
+    <div class="dashboard-main">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h3>Opciones del Profesor</h3>
+
+        <div class="menu-item">
+          <button class="menu-toggle">Notas</button>
+          <div class="submenu">
+            <a href="profesor/gestionar_notas.php">Gestionar Notas</a>
+            <a href="profesor/ver_estudiantes.php">Ver Estudiantes</a>
+          </div>
+        </div>
+
+        <div class="menu-item">
+          <button class="menu-toggle">Cursos</button>
+          <div class="submenu">
+            <a href="profesor/ver_cursos.php">Mis Cursos</a>
+            <a href="profesor/asignar_notas.php">Asignar Notas</a>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Contenido principal -->
+      <main class="dashboard-content">
+        <div class="logo-container">
+          <img src="../assets/image/logo-institucional.png" alt="Logo Institucional" class="logo-institucional">
+        </div>
+      </main>
+
+    </div> <!-- Fin de dashboard-main -->
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
+    </footer>
   </div>
-</body>
-<!-- Pie de página -->
-  <footer class="footer">
-    <p>&copy; 2025 Plataforma de Notas. Todos los derechos reservados.</p>
-  </footer>
-<!-- Script -->
+
   <script src="../assets/scripts/script.js"></script>
+</body>
 </html>
+

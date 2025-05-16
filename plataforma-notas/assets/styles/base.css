@@ -1,20 +1,21 @@
-/* ====== VARIABLES GLOBALES ====== */
+/* ====== VARIABLES ====== */
 :root {
-    --azul-primario: #1e3a8a;
-    --azul-secundario: #4f9df7;
-    --verde-principal: #009640;
-    --rojo-error: #e74c3c;
-    --blanco: #fafafa;
-    --gris-claro: #f0f0f0;
-    --gris-medio: #dcdde1;
-    --gris-oscuro: #2f3640;
+    --verde-principal: #28a745;
+    --verde-secundario: #218838;
+    --azul-primario:  #0056b3;
+    --azul-secundario: #007bff;
+    --rojo-error: #dc3545;
+    --gris-oscuro: #343a40;
+    --gris-claro: #f8f9fa;
+    --blanco: #ffffff;
+    --sombra-suave: 0 4px 10px rgba(0, 0, 0, 0.1);
     --borde-radio: 8px;
-    --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --fuente-principal: 'Roboto', sans-serif;
 }
 
 /* ====== RESET GENERAL ====== */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -22,153 +23,80 @@
 
 html, body {
     height: 100%;
-    font-family: var(--fuente-principal);
-    font-size: 16px;
-    background-color: var(--gris-claro);
-    color: var(--gris-oscuro);
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
 }
 
 /* ====== TIPOGRAFÍA ====== */
 h1, h2, h3, h4, h5 {
-    font-weight: bold;
-    color: var(--azul-primario);
-    margin-bottom: 10px;
+    font-weight: 600;
 }
 
-p {
-    margin-bottom: 10px;
+p, a {
+    font-size: 14px;
 }
 
 a {
     text-decoration: none;
-    color: var(--azul-primario);
-    transition: color 0.3s ease;
+    color: inherit;
 }
 
-a:hover {
-    color: var(--verde-principal);
+h1 {
+    font-size: 2rem;
 }
 
-/* ====== BOTONES GENERALES ====== */
-button,
-.button {
-    padding: 12px 18px;
-    background-color: var(--azul-primario);
-    color: var(--blanco);
-    border: none;
-    border-radius: var(--borde-radio);
-    cursor: pointer;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
+h2 {
+    font-size: 1.75rem;
 }
 
-button:hover,
-.button:hover {
-    background-color: var(--azul-secundario);
-    transform: scale(1.05);
+h3 {
+    font-size: 1.5rem;
 }
 
-/* Botón secundario */
-.button-secundario {
-    background-color: var(--verde-principal);
+h4 {
+    font-size: 1.25rem;
 }
 
-.button-secundario:hover {
-    background-color: #00b85a;
+h5 {
+    font-size: 1rem;
 }
 
-/* Botón de peligro */
-.button-danger {
-    background-color: var(--rojo-error);
-}
-
-.button-danger:hover {
-    background-color: #c0392b;
-}
-
-/* ====== FORMULARIOS ====== */
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--gris-medio);
-    border-radius: var(--borde-radio);
-    background-color: #f0f0f0;
-    font-size: 15px;
-    transition: border 0.3s, box-shadow 0.3s;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-    outline: none;
-    border-color: var(--verde-principal);
-    box-shadow: 0 0 8px rgba(0, 150, 64, 0.3);
-}
-
-/* Etiquetas */
-label {
-    font-weight: 500;
-    margin-bottom: 6px;
-    display: block;
-}
-
-/* ====== CONTENEDORES GENERALES ====== */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* ====== ALERTAS Y MENSAJES ====== */
-.alert {
-    padding: 12px 16px;
-    border-radius: var(--borde-radio);
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.alert-success {
-    background-color: #d4edda;
-    color: #155724;
-    border-left: 4px solid #28a745;
-}
-
-.alert-error {
-    background-color: #fdecea;
-    color: var(--rojo-error);
-    border-left: 4px solid var(--rojo-error);
-}
-
-.alert-info {
-    background-color: #e8f4fd;
-    color: #31708f;
-    border-left: 4px solid #3498db;
-}
-
-/* ====== UTILIDADES ====== */
+/* ====== CLASES UTILITARIAS ====== */
 .text-center {
     text-align: center;
 }
 
-.mt-1 { margin-top: 8px; }
-.mt-2 { margin-top: 16px; }
-.mt-3 { margin-top: 24px; }
+.mt-20 {
+    margin-top: 20px;
+}
 
-.mb-1 { margin-bottom: 8px; }
-.mb-2 { margin-bottom: 16px; }
-.mb-3 { margin-bottom: 24px; }
+.mb-20 {
+    margin-bottom: 20px;
+}
 
-/* ====== RESPONSIVE UTIL ====== */
-@media (max-width: 768px) {
-    .container {
-        padding: 15px;
-    }
+.mb-10 {
+    margin-bottom: 10px;
+}
 
-    button,
-    .button {
-        width: 100%;
-    }
+/* ====== FORMULARIOS ====== */
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gris-oscuro);
+    border-radius: var(--borde-radio);
+    font-size: 14px;
+    background-color: var(--gris-claro);
+    transition: all 0.3s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--verde-principal);
+}
+
+/* Label común para inputs */
+label {
+    font-size: 14px;
+    color: var(--gris-oscuro);
+    margin-bottom: 8px;
+    display: block;
 }

@@ -33,7 +33,10 @@ try {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Historial Académico</title>
-  <link rel="stylesheet" href="../../../assets/styles/styles.css">
+    <link rel="stylesheet" href="../../../assets/styles/base.css">
+    <link rel="stylesheet" href="../../../assets/styles/components.css">
+    <link rel="stylesheet" href="../../../assets/styles/layout.css">
+    <link rel="stylesheet" href="../../../assets/styles/pages/usuarios.css">
 </head>
 <body>
   <!-- Encabezado -->

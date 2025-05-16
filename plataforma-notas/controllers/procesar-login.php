@@ -35,7 +35,7 @@ if (isset($_POST['usuario']) && isset($_POST['password'])) {
                         header('Location: ../pages/dashboard-admin.php');
                         break;
                     case 'profesor':
-                        header('Location: ../pages/dashboard-profesor.php.php');
+                        header('Location: ../pages/dashboard-profesor.php');
                         break;
                     case 'estudiante':
                         header('Location: ../pages/dashboard-estudiante.php');

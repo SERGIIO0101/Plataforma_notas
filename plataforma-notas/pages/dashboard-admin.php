@@ -2,26 +2,35 @@
 session_start();
 include '../includes/conexion.php';
 
-if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
-    $_SESSION['error'] = 'No tienes permisos para acceder a esta página.';
-    header('Location: ../login.php');
-    exit;
+// Función para verificar el rol y acceso del admin
+function verificarAccesoAdmin() {
+    if (!isset($_SESSION['usuario_id']) || $_SESSION['rol'] !== 'admin') {
+        $_SESSION['error'] = 'No tienes permisos para acceder a esta página.';
+        header('Location: ../login.php');
+        exit;
+    }
 }
+
+// Verificamos si el usuario tiene acceso de admin
+verificarAccesoAdmin();
 
 try {
     $counts = [];
     $roles = ['estudiante', 'profesor', 'admin'];
+    
+    // Obtenemos el conteo de cada rol de forma más eficiente
     foreach ($roles as $r) {
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM usuarios WHERE rol = ?");
         $stmt->execute([$r]);
         $counts[$r] = $stmt->fetchColumn();
     }
 
+    // Total de materias, cursos y notas
     $totalMaterias = $pdo->query("SELECT COUNT(*) AS c FROM materias")->fetch()['c'];
     $totalCursos = $pdo->query("SELECT COUNT(*) AS c FROM cursos")->fetch()['c'];
     $totalNotas = $pdo->query("SELECT COUNT(*) AS c FROM notas")->fetch()['c'];
 } catch (PDOException $e) {
-    $_SESSION['error'] = 'Error al cargar las estadísticas.';
+    $_SESSION['error'] = 'Error al cargar las estadísticas: ' . $e->getMessage();
     header('Location: ../login.php');
     exit;
 }
@@ -88,15 +97,11 @@ try {
 
       <!-- Contenido Principal -->
       <main class="dashboard-content">
-        <h2>Estadísticas Generales</h2>
-        <ul class="stats-list">
-          <li>Estudiantes: <?= htmlspecialchars($counts['estudiante']) ?></li>
-          <li>Profesores: <?= htmlspecialchars($counts['profesor']) ?></li>
-          <li>Administradores: <?= htmlspecialchars($counts['admin']) ?></li>
-          <li>Total Materias: <?= htmlspecialchars($totalMaterias) ?></li>
-          <li>Total Cursos: <?= htmlspecialchars($totalCursos) ?></li>
-          <li>Total Notas: <?= htmlspecialchars($totalNotas) ?></li>
-        </ul>
+        <!-- Mostrar logo institucional en lugar de estadísticas -->
+        <div class="logo-container">
+          <img src="../assets/image/logo-institucional.png" alt="Logo Institucional" class="logo-institucional">
+        </div>
+
       </main>
 
     </div> <!-- Fin de dashboard-main -->
@@ -108,5 +113,6 @@ try {
   </div>
 
   <script src="../assets/scripts/script.js"></script>
+
 </body>
 </html>
